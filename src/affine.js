@@ -25,14 +25,16 @@ export function P2 (x, y) {
   this.x = x;
   this.y = y;
 }
-P2.origin = new P2(0, 0);
-P2.approx = (p1, p2) => approx(p1.x, p2.x) && approx(p1.y, p2.y);
-P2.equals = (p1, p2) => p1.x === p2.x && p1.y === p2.y;
-P2.offset = (p, v)   => P2(p.x + v.dx, p.y + v.dy);
+P2.origin   = new P2(0, 0);
+P2.approx   = (p1, p2) => approx(p1.x, p2.x) && approx(p1.y, p2.y);
+P2.equals   = (p1, p2) => p1.x === p2.x && p1.y === p2.y;
+P2.offset   = (p, v)   => P2(p.x + v.dx, p.y + v.dy);
+P2.distance = (p1, p2) => V2.magnitude(V2.fromTo(p1, p2));
 
-P2.prototype.equals     = function (p2) { return P2.equals(this, p2); };
-P2.prototype.offset     = function (v)  { return P2.offset(this, v);  };
-P2.prototype.getOffset  = function (p2) { return V2.fromTo(p2, this); };
+P2.prototype.equals     = function (p2) { return P2.equals(this, p2);   };
+P2.prototype.offset     = function (v)  { return P2.offset(this, v);    };
+P2.prototype.getOffset  = function (p2) { return V2.fromTo(p2, this);   };
+P2.prototype.distance   = function (p2) { return P2.distance(this, p2); };
 
 ///////////////////////////////////////////////////////////////////////////////
 // Vector
