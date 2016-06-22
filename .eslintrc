@@ -2,6 +2,11 @@
   "extends": "eslint-config-standard",
   "rules": {
     "padded-blocks": 0,
-    "brace-style": 0
+    "brace-style": 0,
+    "no-multi-spaces": 0,
+    "spaced-comment": ["error", "always", {
+      "line": { "exceptions": ["/"] }
+    }],
+    semi: ["error", "always"]
   }
 }
