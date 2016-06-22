@@ -1,4 +1,10 @@
 ///////////////////////////////////////////////////////////////////////////////
+// Utility
+///////////////////////////////////////////////////////////////////////////////
+const ε = 1e-6;
+const approx = (x, y) => Math.abs(x - y) < ε;
+
+///////////////////////////////////////////////////////////////////////////////
 // Scalar
 ///////////////////////////////////////////////////////////////////////////////
 export function S (s) {
@@ -20,6 +26,7 @@ export function P2 (x, y) {
   this.y = y;
 }
 P2.origin = new P2(0, 0);
+P2.approx = (p1, p2) => approx(p1.x, p2.x) && approx(p1.y, p2.y);
 P2.equals = (p1, p2) => p1.x === p2.x && p1.y === p2.y;
 P2.offset = (p, v)   => P2(p.x + v.dx, p.y + v.dy);
 
@@ -41,6 +48,7 @@ V2.y    = new V2(0, 1);
 V2.zero = new V2(0, 0);
 
 V2.equals    = (v1, v2) => v1.dx === v2.dx && v1.dy === v2.dy;
+V2.approx    = (v1, v2) => approx(v1.dx, v2.dx) && approx(v1.dy, v2.dy);
 V2.add       = (v1, v2) => V2(v1.dx + v2.dx, v1.dy + v2.dy);
 V2.subtract  = (v1, v2) => V2(v1.dx - v2.dx, v1.dy - v2.dy);
 V2.scale     = (v, s)   => V2(s * v.dx, s * v.dy);
@@ -48,6 +56,7 @@ V2.dot       = (v1, v2) => v1.dx * v2.dx + v1.dy * v2.dy;
 V2.magnitude = (v)      => Math.sqrt(V2.dot(v, v));
 V2.unit      = (v)      => {
   const mag = V2.magnitude(v);
+  if (mag === 0) { return V2.zero; }
   return V2(v.dx / mag, v.dy / mag);
 };
 V2.fromTo = (p1, p2) => V2(p2.x - p1.x, p2.y - p1.y);
