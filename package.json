@@ -1,6 +1,6 @@
 {
   "name": "affine",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "lib/affine.js",
   "jspm": {
@@ -16,7 +16,8 @@
     "prepublish": "npm run compile-lib"
   },
   "files": [
-    "lib/"
+    "lib/",
+    "src/"
   ],
   "repository": {
     "type": "git",
